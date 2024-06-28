@@ -1,0 +1,25 @@
+.app-container {
+    text-align: center;
+  }
+  
+  header {
+    background-color: #282c34;
+    padding: 20px;
+    color: white;
+  }
+  
+  header nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  header nav a.active {
+    text-decoration: underline;
+  }
+  
+  main {
+    padding: 20px;
+  }
+  

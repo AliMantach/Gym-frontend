@@ -1,39 +1,36 @@
-// auth.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private loggedIn = new BehaviorSubject<boolean>(false);
+  private apiUrl = 'http://localhost:3000/api/admins';
 
-  constructor(private http: HttpClient) {
-    this.checkToken();
+  constructor(private http: HttpClient, private router: Router) {}
+
+  register(adminData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, adminData);
   }
 
-  get isLoggedIn() {
-    return this.loggedIn.asObservable();
+  login(loginData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/login`, loginData).pipe(
+      map((response: any) => {
+        localStorage.setItem('accessToken', response.accessToken);
+        return response;
+      })
+    );
   }
 
-  login(credentials: { email: string, password: string }): Observable<any> {
-    return this.http.post<any>('http://localhost:3000/api/users/login', credentials)
-      .pipe(
-        tap(() => this.loggedIn.next(true))
-      );
+  logout(): void {
+    localStorage.removeItem('accessToken');
+    this.router.navigate(['/login']);
   }
 
-  logout() {
-    localStorage.removeItem('token');
-    this.loggedIn.next(false);
-  }
-
-  private checkToken() {
-    const token = localStorage.getItem('token');
-    if (token) {
-      this.loggedIn.next(true);
-    }
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('accessToken');
   }
 }

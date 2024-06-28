@@ -1,2 +1,14 @@
 
-<router-outlet></router-outlet>
+<div class="app-container">
+    <header>
+      <h1>{{ title }}</h1>
+      <nav>
+        <button routerLink="/login" routerLinkActive="active">Login</button>
+        <button routerLink="/register" routerLinkActive="active">Register</button>
+      </nav>
+    </header>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+  
