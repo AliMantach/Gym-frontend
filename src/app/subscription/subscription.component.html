@@ -1,0 +1,54 @@
+<div class="subscription-container">
+  <h2>Subscriptions</h2>
+  <ul class="subscription-list">
+    <li *ngFor="let subscription of subscriptions" (click)="selectSubscription(subscription)">
+      {{ subscription.subscriptionname }} - {{ subscription.price }}
+    </li>
+  </ul>
+
+  <div *ngIf="selectedSubscription" class="edit-container">
+    <h3>Edit Subscription</h3>
+    <form (ngSubmit)="updateSubscription(selectedSubscription)">
+      <label>
+        Name:
+        <input [(ngModel)]="selectedSubscription.subscriptionname" name="subscriptionname" />
+      </label>
+      <label>
+        Description:
+        <input [(ngModel)]="selectedSubscription.description" name="description" />
+      </label>
+      <label>
+        Price:
+        <input [(ngModel)]="selectedSubscription.price" name="price" />
+      </label>
+      <label>
+        Duration:
+        <input [(ngModel)]="selectedSubscription.duration" name="duration" />
+      </label>
+      <button type="submit">Update</button>
+      <button type="button" (click)="deleteSubscription(selectedSubscription._id!)" class="delete-button">Delete</button>
+      <button type="button" (click)="Cancel()" class="cancel-button" >Cancel</button>
+    </form>
+  </div>
+
+  <h3>Add New Subscription</h3>
+  <form #subscriptionForm="ngForm" (ngSubmit)="addSubscription(subscriptionForm.value)" class="add-form">
+    <label>
+      Name:
+      <input ngModel name="subscriptionname" required />
+    </label>
+    <label>
+      Description:
+      <input ngModel name="description" required />
+    </label>
+    <label>
+      Price:
+      <input ngModel name="price" required />
+    </label>
+    <label>
+      Duration:
+      <input ngModel name="duration" required />
+    </label>
+    <button type="submit">Add</button>
+  </form>
+</div>

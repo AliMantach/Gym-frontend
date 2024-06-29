@@ -1,33 +1,33 @@
 <div class="dashboard-container">
-    <h2>Dashboard</h2>
-    <div *ngIf="trainees.length > 0">
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Height</th>
-            <th>Weight</th>
-            <th>Subscription Plan</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let trainee of trainees">
-            <td>{{ trainee.name }}</td>
-            <td>{{ trainee.age }}</td>
-            <td>{{ trainee.email }}</td>
-            <td>{{ trainee.phone }}</td>
-            <td>{{ trainee.height }}</td>
-            <td>{{ trainee.weight }}</td>
-            <td>{{ trainee.subscriptionPlan }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div *ngIf="trainees.length === 0">
-      <p>No trainees found.</p>
-    </div>
+  <h2>Dashboard</h2>
+  <div *ngIf="trainees.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Height</th>
+          <th>Weight</th>
+          <th>Subscription Plan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trainee of trainees">
+          <td>{{ trainee.name }}</td>
+          <td>{{ trainee.age }}</td>
+          <td>{{ trainee.email }}</td>
+          <td>{{ trainee.phone }}</td>
+          <td>{{ trainee.height }}</td>
+          <td>{{ trainee.weight }}</td>
+          <td>{{ trainee.subscriptionPlan }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+  <div *ngIf="trainees.length === 0">
+    <p>No trainees found.</p>
+  </div>
+</div>
   
